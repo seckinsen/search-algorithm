@@ -2,8 +2,8 @@ package cse.study.search.algorithm.informed
 
 import cse.study.search.algorithm.domain.Algorithm
 import cse.study.search.algorithm.domain.GreedyNodeComparator
-import cse.study.search.entity.GreedyEdge
-import cse.study.search.entity.GreedyNode
+import cse.study.search.entity.informed.GreedyEdge
+import cse.study.search.entity.informed.GreedyNode
 import org.slf4j.LoggerFactory
 import java.util.*
 

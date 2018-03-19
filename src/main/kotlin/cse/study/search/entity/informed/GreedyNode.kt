@@ -1,4 +1,4 @@
-package cse.study.search.entity
+package cse.study.search.entity.informed
 
 import java.math.BigDecimal
 
@@ -7,6 +7,7 @@ class GreedyNode @JvmOverloads constructor(val value: Any,
                                            var visited: Boolean = false,
                                            var adjacents: List<GreedyNode> = emptyList(),
                                            var parent: GreedyNode? = null) {
+
     fun visited() {
         this.visited = true
     }

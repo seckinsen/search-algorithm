@@ -1,6 +1,6 @@
 package cse.study.search.algorithm.domain
 
-import cse.study.search.entity.GreedyNode
+import cse.study.search.entity.informed.GreedyNode
 
 object GreedyNodeComparator : Comparator<GreedyNode> {
 

@@ -4,5 +4,6 @@ enum class Methods {
     BFS,
     DFS,
     UCS,
-    GS
+    GS,
+    ASS
 }

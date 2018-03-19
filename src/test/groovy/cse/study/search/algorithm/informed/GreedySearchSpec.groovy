@@ -2,8 +2,8 @@ package cse.study.search.algorithm.informed
 
 import cse.study.search.algorithm.AlgorithmFactory
 import cse.study.search.algorithm.Methods
-import cse.study.search.entity.GreedyEdge
-import cse.study.search.entity.GreedyNode
+import cse.study.search.entity.informed.GreedyEdge
+import cse.study.search.entity.informed.GreedyNode
 import spock.lang.Specification
 
 class GreedySearchSpec extends Specification {
