@@ -10,7 +10,7 @@ class DepthFirstSearch : Algorithm<TreeNode> {
     private val log = LoggerFactory.getLogger(javaClass.simpleName)
 
     private val stack: Stack<TreeNode> = Stack()
-    private val graph: MutableSet<Any> = mutableSetOf()
+    private val path: MutableSet<Any> = mutableSetOf()
 
     override fun resolve(node: TreeNode) {
 
@@ -19,16 +19,19 @@ class DepthFirstSearch : Algorithm<TreeNode> {
 
         while (!stack.isEmpty()) {
 
-            stack.pop()
-                    .also { graph.add(it.data) }
-                    .also { log.info("${it.data}. node popped") }
-                    ?.adjacents
-                    ?.also { log.info("Adjacents: $it") }
-                    ?.forEach { it.takeIf { it.visited } ?: insert(it) }
-
+            with(stack.pop()) {
+                path.add(data)
+                log.info("$data. node popped")
+                log.info("$adjacents")
+                adjacents.forEach {
+                    if (!it.visited) {
+                        insert(it)
+                    }
+                }
+            }
         }
 
-        log.info("The DFS graph is $graph")
+        log.info("The DFS graph is $path")
 
     }
 
@@ -41,7 +44,7 @@ class DepthFirstSearch : Algorithm<TreeNode> {
 
     private fun clear() {
         stack.clear()
-        graph.clear()
+        path.clear()
     }
 
 }

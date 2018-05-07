@@ -24,44 +24,30 @@ class AStartSearch : Algorithm<AStarEdge> {
 
             val currentNode = priorityQueue.poll()
                     .also { visited.add(it) }
-                    .also { visited.lastOrNull()?.also { log.info("${it.value}. node visited") } }
-                    .let { Pair(it, it.value) }
+                    .let { it to it.value }
                     .also { it.second.check(node.goal.value) }
                     .first
                     .apply { path.f = path.h + path.g }
-                    .also { log.info("${it.value}. node dequeue") }
-
-            log.info("**************************************************")
 
             currentNode.adjacents
-                    .also { log.info("Adjacents: $it") }
                     .forEach { adjacent ->
                         val target = adjacent.target
                         val cost = adjacent.cost
                         val targetG = currentNode.path.g + cost
                         val targetF = targetG + target.path.h
 
-                        log.info("Current node (${currentNode.value}) with path ${currentNode.path}")
-                        log.info("Target node (${target.value}) with path before calculation ${target.path}")
-
                         if (!visited.contains(target) && !priorityQueue.contains(target)) {
                             target.path.g = targetG
                             target.path.f = targetF
-                            log.info("Target node (${target.value}) with path after calculation --> ${target.path}")
-
                             target.parent = currentNode
-                            log.info("Target node (${target.value}) with parent after assignment --> ${target.parent?.value}")
 
                             enqueue(target)
                         } else if (priorityQueue.contains(target) && targetF < target.path.f) {
                             target.parent = currentNode
-                            log.info("Target node (${target.value}) with parent after reassignment --> ${target.parent?.value}")
-
                             priorityQueue.remove(target)
                             enqueue(target)
                         }
 
-                        log.info("==================================================")
                     }
 
         }
